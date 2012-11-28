@@ -1,0 +1,20 @@
+{
+  "name": "monconn",
+  "version": "0.1.0",
+  "description": "parse and use mongodb connectionstrings",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jden/monconn.git"
+  },
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "connectionstring"
+  ],
+  "author": "jden <jason@denizac.org>",
+  "license": "MIT"
+}
