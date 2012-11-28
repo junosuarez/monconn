@@ -77,26 +77,27 @@ mongoConnectionString.prototype.toString = function () {
  *         	 returns an authenticated mongodb.Db
  */
 mongoConnectionString.prototype.connect = function (mongodb, options, cb) {
+	var self = this;
 	if (!cb) {
 		cb = options;
 	}
 	if (!cb || typeof cb !== 'function') {
 		throw new Error('callback must be specified as the last argument');
 	}
-	var server = new mongodb.Server(this.host, this.port, {ssl: this.ssl});
-	if (!this.db) {
+	var server = new mongodb.Server(self.host, self.port, {ssl: self.ssl});
+	if (!self.db) {
 		return server;
 	}
 
-	var db = new mongodb.Db(this.db, server, options);
+	var db = new mongodb.Db(self.db, server, options);
 	db.open(function (err, db) {
 		if (err) return cb(err);
 
-		if (!this.user || !this.pass) {
+		if (!self.user || !self.pass) {
 			cb(null, db);
 		}
 
-		db.authenticate(this.user, this.pass, function (err) {
+		db.authenticate(self.user, self.pass, function (err) {
 			if (err) return cb(err);
 			return cb(null, db);
 		});
